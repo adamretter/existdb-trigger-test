@@ -48,7 +48,8 @@
         <project.build.source>1.8</project.build.source>
         <project.build.target>1.8</project.build.target>
 
-        <exist.version>5.3.0-SNAPSHOT</exist.version>
+        <fdb.server.version>1.0.0-SNAPSHOT</fdb.server.version>
+        <exist.compatibility.version>5.3.0-SNAPSHOT</exist.compatibility.version>
 
         <!-- used in the EXPath Package Descriptor -->
         <package-name>https://my-organisation.com/exist-db/app</package-name>
@@ -59,9 +60,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.exist-db</groupId>
+            <groupId>com.fusiondb.fusionserver</groupId>
             <artifactId>exist-core</artifactId>
-            <version>${exist.version}</version>
+            <version>${fdb.server.version}</version>
             <scope>provided</scope>
         </dependency>
 
@@ -72,19 +73,6 @@
             <scope>provided</scope>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>org.exist-db</groupId>-->
-<!--            <artifactId>exist-optional</artifactId>-->
-<!--            <version>${exist.version}</version>-->
-<!--        </dependency>-->
-
-        <!-- test dependencies -->
-<!--        <dependency>-->
-<!--            <groupId>org.exist-db</groupId>-->
-<!--            <artifactId>exist-testkit</artifactId>-->
-<!--            <version>${exist.version}</version>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

@@ -90,7 +90,7 @@ public class ExampleTrigger extends SAXTrigger implements DocumentTrigger, Colle
         }
 
 
-        try (final Collection collection = broker.openCollection(document.getCollection().getURI(), Lock.LockMode.WRITE_LOCK)) {
+        try (final Collection collection = broker.openCollection(txn, document.getCollection().getURI(), Lock.LockMode.WRITE_LOCK)) {
 
             // Stream into database
             try (final InputStream bais = new ByteArrayInputStream(data);) {

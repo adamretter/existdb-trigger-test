@@ -17,7 +17,7 @@
     <tag>application</tag>
     <category id="apps">Applications</category>
 
-    <dependency processor="http://exist-db.org" semver-min="${exist.version}" />
+    <dependency processor="http://exist-db.org" semver-min="${exist.compatibility.version}" />
 
     <!-- Collection inside /db/apps where xar-resources will be copied to -->
     <target>${package-abbrev}</target>

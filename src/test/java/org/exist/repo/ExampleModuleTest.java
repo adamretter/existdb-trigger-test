@@ -5,6 +5,7 @@ import org.exist.EXistException;
 import org.exist.security.PermissionDeniedException;
 import org.exist.storage.BrokerPool;
 import org.exist.storage.DBBroker;
+import org.exist.storage.txn.Txn;
 import org.exist.test.ExistEmbeddedServer;
 import org.exist.xquery.XPathException;
 import org.exist.xquery.XQuery;
@@ -101,13 +102,15 @@ public class ExampleModuleTest {
         assertEquals(579, ((IntegerValue)result.itemAt(0)).getInt());
     }
 
-
     private Sequence executeQuery(final String xquery) throws EXistException, PermissionDeniedException, XPathException {
         final BrokerPool pool = existEmbeddedServer.getBrokerPool();
         final XQuery xqueryService = pool.getXQueryService();
 
-        try(final DBBroker broker = pool.get(Optional.of(pool.getSecurityManager().getSystemSubject()))) {
-            return xqueryService.execute(broker, xquery, null);
+        try(final DBBroker broker = pool.get(Optional.of(pool.getSecurityManager().getSystemSubject()));
+                final Txn transaction = pool.getTransactionManager().beginTransaction()) {
+            final Sequence result = xqueryService.execute(broker, transaction, xquery, null);
+            transaction.commit();
+            return result;
         }
     }
 }
